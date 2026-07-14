@@ -34,13 +34,8 @@
 
 @media (width < 765px) {
     .home-body p{
-        font-size: 3rem;
-    }
-}
-
-@media (width < 446px) {
-    .home-body p{
         font-size: 2rem;
     }
 }
+
 
