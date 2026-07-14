@@ -10,7 +10,7 @@
 }
 
 .home-body p{
-    font-size: 15vh;
+    font-size: 6rem;
     margin: 0;
 }
 
@@ -32,7 +32,7 @@
     color: white;
 }
 
-@media (width < 765px) {
+@media (width < 965px) {
     .home-body p{
         font-size: 2rem;
     }
