@@ -1,0 +1,21 @@
+ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    animation: pop-up 1.5s ease-in-out;
+}
+
+ul a{
+    text-decoration: none;
+    color: white;
+    margin-right: 30px;
+}
+
+.active-link{
+    color: rgb(0, 0, 255);
+    font-weight: bold;
+    text-decoration: underline;
+}
