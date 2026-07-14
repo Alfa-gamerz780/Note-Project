@@ -23,9 +23,9 @@ const Pastes = () => {
     // dispatch(resetNote())
   }
 
-  
 
-  function handleDelete(noteId){
+
+  function handleDelete(noteId) {
     console.log("Delete clicked:", noteId);
     dispatch(deleteNote(noteId));
   }
@@ -44,31 +44,42 @@ const Pastes = () => {
         onClick={handelReset}
       >Reset Note</button>
 
-      <div id='preview-note'>
+<div id='preview-note'>
 
-        {
-          filterData.length > 0 &&
+      {
+        filterData.length > 0 ? (
           filterData.map((note) => (
-            <div className="note" key={note?._id}>
-              <p className="note-head">{note.title}</p>
-              <hr />
-              <p className="note-pre">{note.content}</p>
-              <hr />
-              <div className="edit-note">
-                <button 
-                onClick={() => handleDelete(note?._id)}
-                className="bg-danger">Delete</button>
-                <button onClick={() => navigate(`/newNote/${note._id}`)}>
-                  Edit Note
-                </button>
+              <div className="note" key={note?._id}>
+                <p className="note-head">{note.title}</p>
+                <hr />
+                <p className="note-pre">
+                  {note.content.length > 200
+                    ? note.content.slice(0, 200) + "..."
+                    : note.content}
+                </p>
+                <hr />
+                <div className="edit-note">
+                  <button
+                    onClick={() => handleDelete(note?._id)}
+                    className="bg-danger">Delete</button>
+                  <button onClick={() => navigate(`/newNote/${note._id}`)}>
+                    Edit Note
+                  </button>
+                </div>
               </div>
+          )))
+          : (
+            <div className="no-note">
+              <h1>No Note Found</h1>
+              <p>Create your first note by clicking the "Create Note" button.</p>
             </div>
-          ))
+          )
         }
 
-      </div>
+        </div>
     </div>
   )
 }
 
 export default Pastes
+
