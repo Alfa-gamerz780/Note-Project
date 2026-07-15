@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createNote, updateNote } from '../features/pastefeature/PasteSlice'
 import { set, useForm } from "react-hook-form";
 import { useEffect } from 'react'
+import { toast } from 'react-toastify';
 
 const NewNote = () => {
     const navigate = useNavigate()
@@ -41,19 +42,27 @@ const NewNote = () => {
             _id: noteId ||
                 Date.now().toString(36),
             createdAt: new Date().toISOString(),
-        }
+        };
 
         if (noteId) {
             dispatch(updateNote(note));
+            toast.success("Note Updated Successfully",
+                {
+                    position : "top-center"
+                });
         }
         else {
             dispatch(createNote(note));
+            toast.success("Note Added Successfully",
+                {
+                    position : "top-center"
+                });
         }
 
         setTitle('');
         setValue('');
-        // setSearchParams({});
 
+        // setSearchParams({});
         // navigate("/pastes");
     }
 
@@ -111,6 +120,8 @@ const NewNote = () => {
                     </button>
                 </div>
             </div>
+
+            
     )
 }
 

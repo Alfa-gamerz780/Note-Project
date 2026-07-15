@@ -4,7 +4,8 @@ import './animation.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteNote, resetNote } from '../features/pastefeature/PasteSlice'
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
+import Swal from "sweetalert2";
 
 const Pastes = () => {
   const [searchData, setSearchTerm] = useState('');
@@ -19,15 +20,37 @@ const Pastes = () => {
 
 
   function handelReset() {
-    alert("Do you Want to Reset all Notes")
-    // dispatch(resetNote())
+    Swal.fire({
+      title: "Reset Note?",
+      text: "Are you sure to reset all note",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      confirmButtonColor: "red",
+    }).then((result) =>{
+      if(result.isConfirmed){
+        dispatch(resetNote());
+        toast.success("All Note Reseted");
+      }
+    })
   }
 
 
 
   function handleDelete(noteId) {
-    console.log("Delete clicked:", noteId);
-    dispatch(deleteNote(noteId));
+    Swal.fire({
+      title: "Delete Note?",
+      text: "Are you sure to delete note",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      confirmButtonColor: "red",
+    }).then((result) =>{
+      if(result.isConfirmed){
+        dispatch(deleteNote(noteId));
+        toast.success("Note Deleted");
+      }
+    })
   }
 
   return (

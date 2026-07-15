@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import toast from 'react-hot-toast';
+
 
 const initialState = {
   notes: localStorage.getItem("notes")
@@ -15,7 +15,6 @@ export const noteSlice = createSlice({
       const newNotes = action.payload;
       state.notes.push(newNotes);
       localStorage.setItem("notes", JSON.stringify(state.notes));
-      toast.success("Note Added Successfully");
     },
 
 
@@ -43,7 +42,6 @@ export const noteSlice = createSlice({
       );
 
       localStorage.setItem("notes", JSON.stringify(state.notes));
-      toast.success("Note Deleted");
     },
 
 
